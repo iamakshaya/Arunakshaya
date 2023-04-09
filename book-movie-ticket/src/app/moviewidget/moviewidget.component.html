@@ -1,1 +1,16 @@
-<p>moviewidget works!</p>
+<div class="widget-container">
+    <img [src]="movie.thumbnail_url" width="230px" height="278px" class="movie-thumbnail-img">
+    <div class="movie-details-container">
+        <div class="movie-details">
+            <div class="movie-name">
+                {{movie.movie_name}} - {{movie.language}}
+            </div>
+            <div class="rating-style">
+                {{movie.imdb_rating}} / 10
+            </div>
+        </div>
+        <div class="book">
+            Book
+        </div>
+    </div>
+</div>

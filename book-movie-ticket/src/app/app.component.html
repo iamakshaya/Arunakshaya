@@ -1,12 +1,12 @@
 <header class="header-container">
   <div class="app-title">
     <span>Book</span>
-    <span>Movie</span> 
+    <span>Movie</span>
     <span>Ticket</span>
   </div>
   <div class="nav-menu-container">
-    <div>Home</div>
-    <div>Movies</div>
-    <div>Theatres</div>
+    <div><a routerLink="/movies" routerLinkActive="active-link">Movies</a></div>
+    <div><a routerLink="/theatres" routerLinkActive="active-link">Theatres</a></div>
   </div>
 </header>
+<router-outlet></router-outlet>
