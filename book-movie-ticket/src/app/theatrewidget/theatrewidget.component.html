@@ -1,0 +1,17 @@
+<div id="theatre-widget">
+    <div>
+        <img [src]="theatre.thumbnail_url" onerror="this.src='../assets/theatre.svg'" width="80px" height="80px">
+    </div>
+    <div class="theatre-details">
+        <div class="theatre-name">
+            <a [href]="theatre.website" title="Click to visit theatre official site">{{theatre.theatre_name}}</a>
+        </div>
+        <div class="rating-style">
+            {{theatre.customer_rating}} / 5
+        </div>
+        <div class="address">{{theatre.address}}</div>
+    </div>
+    <div>
+        <div class="book" (click)="showAllTimings()">Book</div>
+    </div>
+</div>

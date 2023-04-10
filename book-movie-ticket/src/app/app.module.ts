@@ -7,13 +7,17 @@ import { AppService } from './app.service';
 import { MoviewidgetComponent } from './moviewidget/moviewidget.component';
 import { MoviesComponent } from './movies/movies.component';
 import { TheatrelistComponent } from './theatrelist/theatrelist.component';
+import { TheatrewidgetComponent } from './theatrewidget/theatrewidget.component';
+import { ShowtimingComponent } from './showtiming/showtiming.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviewidgetComponent,
     MoviesComponent,
-    TheatrelistComponent
+    TheatrelistComponent,
+    TheatrewidgetComponent,
+    ShowtimingComponent
   ],
   imports: [
     BrowserModule,
