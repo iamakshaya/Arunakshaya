@@ -20,4 +20,7 @@ export class TheatrelistComponent implements OnInit {
     this.selectedTheatreDetails = data;
     this.showAllTimings = true;
   }
+  viewTheatreList() {
+    this.showAllTimings = false;
+  }
 }

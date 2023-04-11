@@ -9,5 +9,5 @@
     </div>
 </div>
 <div *ngIf="showAllTimings">
-    <app-showtiming [theatre]="selectedTheatreDetails"></app-showtiming>
+    <app-showtiming [theatre]="selectedTheatreDetails" (backtoTheatreList)="viewTheatreList()"></app-showtiming>
 </div>

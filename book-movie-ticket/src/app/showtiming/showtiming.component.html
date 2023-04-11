@@ -1,1 +1,31 @@
-
+<div id="page-content-details">
+    <h2>{{theatre.theatre_name}}</h2>
+    <h5>{{theatre.address}}</h5>
+</div>
+<div id="showtime-widget-container">
+    <div class="back-option" (click)="switchView()">Back to Theatre list</div>
+    <div class="dates-container">
+        <div *ngFor="let date of dates; let i = index" class="dates" [ngClass]="{'active-date': date.selected}" (click)="selectDate(i)">
+            <div>
+                {{date.displayDay}}
+            </div>
+            <div>
+                {{date.displayDate}}
+            </div>
+        </div>
+    </div>
+    <div *ngFor="let movie of theatre.movies" class="showlist-container">
+        <div class="movie-details">
+            <div>{{movie.movie_name}}</div>
+            <div>{{movie.language}}</div>
+        </div>
+        <div class="show-timings-container">
+            <div *ngFor="let show of movie.time" class="shows" (click)="bookTicket(theatre, movie, show)">
+                <div class="show-text">{{show}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="openModal">
+    <app-bookticket [ticketDetails]="ticketDetails" [bookedSeats]="bookedSeats" (closeBooking)="closeBooking($event)"></app-bookticket>
+</div>

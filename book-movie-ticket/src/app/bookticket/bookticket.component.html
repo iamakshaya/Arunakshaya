@@ -1,1 +1,30 @@
-<p>bookticket works!</p>
+<div class="modal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <span (click)="close()">X</span></div>
+        <div class="modal-body">
+            <div class="seat-grid">
+                <div *ngFor="let seat of seats;let i = index">
+                    <div [ngClass]="{'mr-20' : ((i+1)>4 && ((i+1)%5) == 0), 'selected': seat.isSelected, 'disable-cursor taken' : !seat.isAvailable}" class="seat-box" (click)="seatsSelected(seat)"></div>
+                </div>
+            </div>
+            <div class="screen">
+                <p>Screen This Way</p>
+            </div>
+            <div class="seat-legends">
+                <div>
+                    <span class="seat-box available"></span>
+                    <span>Available</span>
+                </div>
+                <div>
+                    <span class="seat-box taken"></span>
+                    <span>Taken</span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div (click)="bookTicket()">Book Ticket</div>
+            <div class="cancel" (click)="close()">Cancel</div>
+        </div>
+    </div>
+</div>

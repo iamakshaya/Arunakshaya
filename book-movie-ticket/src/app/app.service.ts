@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { BookTicket } from 'src/model/BookTicket';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,9 @@ export class AppService {
   getAllDetails() {
     let url = 'https://zincubate.in/api/MovieTicketChecker?action=getAllDetails';
     return this.http.post(url, { user_mail_id: this.user_mail_id });
+  }
+  bookSeats(ticketDetails: BookTicket) {
+    let url = "https://zincubate.in/api/MovieTicketChecker?action=bookSeats";
+    return this.http.post(url, ticketDetails);
   }
 }

@@ -1,0 +1,130 @@
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 40px;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container {
+    width: 75%;
+    height: 590px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.modal-header {
+    display: flex;
+    height: 40px;
+    justify-content: flex-end;
+    align-items: center;
+    color: white;
+    padding: 0px 20px;
+    background: #2c333d;
+    border-radius: 10px 10px 0px 0px;
+    span {
+        cursor: pointer;
+    }
+}
+
+.modal-body {
+    padding: 30px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.seat-box {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid #757575;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+.disable-cursor {
+    pointer-events: none;
+}
+.seat-box:hover {
+    box-shadow: 0px 0px 5px;
+}
+.seat-grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 350px
+}
+
+.mr-20 {
+    margin-right: 20px;
+}
+.screen {
+    width: 50%;
+    height: 35px;
+    border: 1px solid #e2e2e2;
+    border-bottom: 0;
+    margin-top: 15px;
+    p {
+        color: gray;
+        line-height: 15px;
+        text-align: center;
+        font-size: 11px;
+    }
+}
+.seat-legends {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    border-top: 1px solid #e2e2e2;
+    padding-top: 20px;
+    div {
+        display: flex;
+        align-items: center;
+        span {
+            display: inline-block;
+            color: gray;
+            text-align: center;
+            font-size: 11px;
+            margin-left: 10px;
+        }
+    }
+}
+.available {
+    background-color: white;
+}
+.taken {
+    background-color: #757575;
+}
+.selected {
+    background-color: #4caf50;
+    border-color: #4caf50;
+}
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div {
+        width: 100px;
+        height: 30px;
+        color: white;
+        background-color: #ffc107;
+        border-radius: 5px;
+        margin:0px 10px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+    }
+    .cancel {
+        background-color: #e2e2e2;
+        color:rgba(0, 0, 0, 0.75);
+    }
+}
