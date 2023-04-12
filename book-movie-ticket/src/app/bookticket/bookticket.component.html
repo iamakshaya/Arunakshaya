@@ -28,3 +28,13 @@
         </div>
     </div>
 </div>
+<div *ngIf="alert" class="modal modal-xs">
+    <div class="modal-container modal-container-xs">
+        <div class="m-20">
+            {{responseMessage}}
+        </div>
+        <div class="modal-footer">
+          <div (click)="close(true)">OK</div>
+        </div>
+    </div>
+</div>

@@ -11,6 +11,8 @@ export class BookticketComponent implements OnInit {
   @Input() ticketDetails: BookTicket = new BookTicket();
   @Input() bookedSeats: any = "";
   @Output() closeBooking = new EventEmitter<any>();
+  responseMessage = '';
+  alert: boolean = false;
   seats = new Array();
   constructor(private appService: AppService) { }
   ngOnInit() {
@@ -35,13 +37,13 @@ export class BookticketComponent implements OnInit {
     }
     this.appService.bookSeats(this.ticketDetails).subscribe((response: any) => {
       if (response && response.message) {
-        alert(response.message);
+        this.responseMessage = response.message;
+        this.alert = true;
         this.getAllDetails();
-        this.close(true);
       }
-    }, (err: any) => {
-      alert('Booking unsuccessful');
-      this.close();
+    }, (err: any) => {  
+      this.responseMessage = 'Booking unsuccessful';
+      this.alert = true;
     });
   }
 
