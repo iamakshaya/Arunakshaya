@@ -17,7 +17,7 @@ npm install -g @angular/cli
 https://github.com/iamakshaya/Arunakshaya.git
 
 ```
-Change directory to the project folder 'book-movie-ticket', 
+Change directory to the project folder 'book-movie-ticket' in your terminal  
 
 ```
 ### Install the node modules using the following command
