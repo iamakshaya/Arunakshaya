@@ -10,6 +10,7 @@ import { TheatrelistComponent } from './theatrelist/theatrelist.component';
 import { TheatrewidgetComponent } from './theatrewidget/theatrewidget.component';
 import { ShowtimingComponent } from './showtiming/showtiming.component';
 import { BookticketComponent } from './bookticket/bookticket.component';
+import { TshowtimingComponent } from './tshowtiming/tshowtiming.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BookticketComponent } from './bookticket/bookticket.component';
     TheatrelistComponent,
     TheatrewidgetComponent,
     ShowtimingComponent,
-    BookticketComponent
+    BookticketComponent,
+    TshowtimingComponent
   ],
   imports: [
     BrowserModule,

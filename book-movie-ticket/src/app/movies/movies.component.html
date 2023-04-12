@@ -1,10 +1,13 @@
-<div class="body-container">
+<div *ngIf="!showAllTimings" class="body-container">
     <div class="container-title">
         <h2>Movies</h2>
     </div>
     <div class="movie-list-container">
         <div *ngFor="let movie of allDetails?.movies">
-            <app-moviewidget [movie]="movie"></app-moviewidget>
+            <app-moviewidget [movie]="movie" [theatres]="allDetails?.theatre" (setCurrentMovieDetails)="setCurrentMovieDetails($event)"></app-moviewidget>
         </div>
     </div>
+</div>
+<div *ngIf="showAllTimings">
+    <app-tshowtiming [movie]="selectedMovieDetails" (backtoMovieList)="viewMovieList()"></app-tshowtiming>
 </div>

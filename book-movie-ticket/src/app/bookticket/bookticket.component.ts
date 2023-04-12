@@ -20,13 +20,10 @@ export class BookticketComponent implements OnInit {
       let isAvailable = bookedSeatArr.length ? !bookedSeatArr.some((x: any) => x == i) : true;
       this.seats.push({ seatNo: i, isAvailable: isAvailable, isSelected: false });
     }
-    console.log(this.seats);
   }
   seatsSelected(seatObj: any) {
     seatObj.isSelected = !seatObj.isSelected;
     this.ticketDetails.booked_seats = `[${(this.seats.filter((seatObj: any) => seatObj.isSelected == true)).map((value: any) => value.seatNo)}]`;
-    console.log('Tickets Booked');
-    console.log(this.ticketDetails);
   }
   close(afterPost: boolean = false) {
     this.ticketDetails.booked_seats = '';
@@ -51,6 +48,7 @@ export class BookticketComponent implements OnInit {
   getAllDetails() {
     this.appService.getAllDetails().subscribe((response: any) => {
       if (response) {
+        response.isAfterBooking = true;
         this.appService.allDetails.next(response);
       }
     }, (err: any) => {

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-theatrewidget',
@@ -10,7 +9,7 @@ export class TheatrewidgetComponent {
   @Input() theatre: any;
   @Input() movies: any;
   @Output() setCurrentTheatreDetails = new EventEmitter<any>();
-  constructor(private router: Router) { }
+  
   showAllTimings() {
     this.formMovieList();
     this.setCurrentTheatreDetails.emit(this.theatre);

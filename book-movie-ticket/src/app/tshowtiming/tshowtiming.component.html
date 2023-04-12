@@ -1,0 +1,40 @@
+<div id="page-content-details">
+    <div>
+        <img [src]="movie.thumbnail_url" width="150px" height="200px">
+        <div class="movie-datas">
+            <div>{{movie.movie_name}}</div>
+            <div class="rating-style">{{movie.imdb_rating}} / 10</div>
+            <div>{{movie.language}}</div>
+            <div>{{movie.tags}}</div>
+            <div>{{movie.running_time}}</div>
+            <div>{{movie.release_date}}</div>
+        </div>
+    </div>
+</div>
+<div id="showtime-widget-container">
+    <div class="back-option" (click)="switchView()">Back to Movie list</div>
+    <div class="dates-container">
+        <div *ngFor="let date of dates; let i = index" class="dates" [ngClass]="{'active-date': date.selected}" (click)="selectDate(i)">
+            <div>
+                {{date.displayDay}}
+            </div>
+            <div>
+                {{date.displayDate}}
+            </div>
+        </div>
+    </div>
+    <div *ngFor="let theatre of movie.theatres" class="showlist-container">
+        <div class="movie-details">
+            <div>{{theatre.theatre}}</div>
+            <div class="address-text">{{theatre.address}}</div>
+        </div>
+        <div class="show-timings-container">
+            <div *ngFor="let show of theatre.time" class="shows" (click)="bookTicket(theatre, movie, show)">
+                <div class="show-text">{{show}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="openModal">
+    <app-bookticket [ticketDetails]="ticketDetails" [bookedSeats]="bookedSeats" (closeBooking)="closeBooking($event)"></app-bookticket>
+</div>

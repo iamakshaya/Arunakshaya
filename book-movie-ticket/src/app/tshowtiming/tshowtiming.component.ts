@@ -1,16 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AppService } from '../app.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BookTicket } from 'src/model/BookTicket';
+import { AppService } from '../app.service';
 
 @Component({
-  selector: 'app-showtiming',
-  templateUrl: './showtiming.component.html',
-  styleUrls: ['./showtiming.component.less']
+  selector: 'app-tshowtiming',
+  templateUrl: './tshowtiming.component.html',
+  styleUrls: ['./tshowtiming.component.less']
 })
-export class ShowtimingComponent implements OnInit {
-  @Input() theatre: any;
-  @Output() backtoTheatreList = new EventEmitter<any>();
-  dates: any = [];
+export class TshowtimingComponent {
+@Input() movie: any;
+@Output() backtoMovieList = new EventEmitter<any>();
+dates: any = [];
   openModal: boolean = false;
   ticketDetails: BookTicket = new BookTicket();
   bookedSeats: string = "";
@@ -19,7 +19,7 @@ export class ShowtimingComponent implements OnInit {
     this.dates = this.appService.generateDates();
   };
   switchView() {
-    this.backtoTheatreList.emit();
+    this.backtoMovieList.emit();
   }
   selectDate(i: number) {
     this.dates.forEach((data: any) => {
@@ -33,14 +33,15 @@ export class ShowtimingComponent implements OnInit {
     this.ticketDetails.date = `${dateSelected.date.getDate()}/${dateSelected.date.getMonth()}/${dateSelected.date.getFullYear()}`;
     this.ticketDetails.show_time = show;
     this.ticketDetails.theatre_name = theatre.theatre_name;
-    if (this.theatre.booked_seats && this.theatre.booked_seats.length) {
-      this.checkForBookedSeats();
+    let theatreObj = this.movie.theatres.find((tobj: any) => tobj.theatre_name == theatre.theatre_name);
+    if (theatreObj.booked_seats && theatreObj.booked_seats.length) {
+      this.checkForBookedSeats(theatreObj);
     }
     this.openModal = true;
   }
-  checkForBookedSeats() {
+  checkForBookedSeats(theatreObj: any) {
     let bookedSeats = '';
-    let bookedDateArr = this.theatre.booked_seats.filter((x: any) => x.date == this.ticketDetails.date);
+    let bookedDateArr = theatreObj.booked_seats.filter((x: any) => x.date == this.ticketDetails.date);
     if (bookedDateArr.length) {
       let seats = [
         {bookedSeats : bookedDateArr[0].show1_booked_seats, time: bookedDateArr[0].show1_time},
