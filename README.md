@@ -32,3 +32,6 @@ ng serve
 ```
 
 Open - http://localhost:4200/ to view the application
+
+[node.js]: https://nodejs.org/
+[npm]: https://www.npmjs.com/get-npm
