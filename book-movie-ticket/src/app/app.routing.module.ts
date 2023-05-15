@@ -3,11 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { MoviesComponent } from './movies/movies.component';
 import { TheatrelistComponent } from './theatrelist/theatrelist.component';
 import { ShowtimingComponent } from './showtiming/showtiming.component';
+import { TshowtimingComponent } from './tshowtiming/tshowtiming.component';
+import { BookticketComponent } from './bookticket/bookticket.component';
 
 const routes: Routes = [
+  { path: '', component: MoviesComponent },
   { path: 'movies', component: MoviesComponent },
+  { path: 'movies/:mid', component: TshowtimingComponent },
   { path: 'theatres', component: TheatrelistComponent },
-  { path: 'showTimings', component: ShowtimingComponent }
+  { path: 'theatres/:tid', component: ShowtimingComponent },
+  { path: 'bookTicket/:mid/:tid/:date/:time', component: BookticketComponent }
 ];
 
 @NgModule({

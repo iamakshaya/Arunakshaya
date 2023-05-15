@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'book-movie-ticket';
-  constructor(private router: Router) {
-    this.router.navigateByUrl('/movies');
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private appService: AppService) {
+    this.appService.getAllDetails();
   }
 }

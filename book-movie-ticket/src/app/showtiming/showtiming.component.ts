@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppService } from '../app.service';
 import { BookTicket } from 'src/model/BookTicket';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-showtiming',
@@ -14,48 +15,57 @@ export class ShowtimingComponent implements OnInit {
   openModal: boolean = false;
   ticketDetails: BookTicket = new BookTicket();
   bookedSeats: string = "";
-  constructor(private appService: AppService) { }
+  theatreId: string = '';
+  date: string = '';
+  constructor(private appService: AppService, private router: Router, private activatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
     this.dates = this.appService.generateDates();
+    this.selectDate(0);
+    this.activatedRoute.params.subscribe((data: any) => {
+      if (data['tid']) {
+        this.theatreId = data['tid'];
+      }
+   });
+   this.activatedRoute.queryParams.subscribe((data: any) => {
+    if (data['date']) {
+      this.date = data['date'];
+      const i = this.dates.findIndex((x: any) => x.url == this.date);
+      if (i != -1) {
+        this.selectDate(i);
+      }
+    }
+   })
+    this.appService.allDetails
+    .subscribe((x: any) => {
+      console.log('showtiming');
+      console.log(x);
+      if (this.theatreId && x.theatre) {
+        const theatreIndex = x.theatre.findIndex((x: any)=>x.id == this.theatreId);
+        x.theatre[theatreIndex] = this.appService.formMovieList(x.theatre[theatreIndex], x.movies);
+        this.theatre = x.theatre[theatreIndex];
+      }
+    })
+
   };
   switchView() {
-    this.backtoTheatreList.emit();
+    //this.backtoTheatreList.emit();
+    this.router.navigateByUrl('/theatres');
   }
   selectDate(i: number) {
     this.dates.forEach((data: any) => {
       data.selected = false;
     })
     this.dates[i].selected = true;
-  }
-  bookTicket(theatre: any, movie: any, show: string) {
-    let dateSelected = this.dates.find((obj: any) => obj.selected == true);
-    this.ticketDetails.movie_name = movie.movie_name;
-    this.ticketDetails.date = `${dateSelected.date.getDate()}/${dateSelected.date.getMonth()}/${dateSelected.date.getFullYear()}`;
-    this.ticketDetails.show_time = show;
-    this.ticketDetails.theatre_name = theatre.theatre_name;
-    if (this.theatre.booked_seats && this.theatre.booked_seats.length) {
-      this.checkForBookedSeats();
-    }
-    this.openModal = true;
-  }
-  checkForBookedSeats() {
-    let bookedSeats = '';
-    let bookedDateArr = this.theatre.booked_seats.filter((x: any) => x.date == this.ticketDetails.date);
-    if (bookedDateArr.length) {
-      let seats = [
-        {bookedSeats : bookedDateArr[0].show1_booked_seats, time: bookedDateArr[0].show1_time},
-        {bookedSeats : bookedDateArr[0].show2_booked_seats, time: bookedDateArr[0].show2_time},
-        {bookedSeats : bookedDateArr[0].show3_booked_seats, time: bookedDateArr[0].show3_time},
-        {bookedSeats : bookedDateArr[0].show4_booked_seats, time: bookedDateArr[0].show4_time},
-      ];
-      bookedSeats = seats.find((x: any) => x.time == this.ticketDetails.show_time)?.bookedSeats;
-    }
-    this.bookedSeats = bookedSeats;
+    this.date = this.dates[i].url;
+    this.router.navigateByUrl(`theatres/${this.theatreId}?date=${this.dates[i].url}`);
   }
   closeBooking(afterPost: boolean) {
     this.openModal = false;
     if (afterPost) {
       this.switchView();
     }
+  }
+  routeToBookTicket(movieId: any,show: any) {
+    this.router.navigateByUrl(`bookTicket/${movieId}/${this.theatreId}/${this.date}/${show}`);
   }
 }

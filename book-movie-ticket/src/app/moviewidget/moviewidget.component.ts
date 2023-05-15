@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-moviewidget',
@@ -6,6 +7,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
   styleUrls: ['./moviewidget.component.less']
 })
 export class MoviewidgetComponent implements OnInit{
+  constructor(private router: Router){}
   @Input() movie: any = {};
   @Input() theatres: any = [];
   @Output() setCurrentMovieDetails = new EventEmitter<any>();
@@ -14,9 +16,10 @@ export class MoviewidgetComponent implements OnInit{
   }
   ngOnInit(): void {
   }
-  showAllTimings() {
-    this.formTheatreList();
-    this.setCurrentMovieDetails.emit(this.movie);
+  showAllTimings(id: number) {
+    this.router.navigateByUrl(`/movies/${id}`);
+    // this.formTheatreList();
+    // this.setCurrentMovieDetails.emit(this.movie);
   }
 
   formTheatreList() {

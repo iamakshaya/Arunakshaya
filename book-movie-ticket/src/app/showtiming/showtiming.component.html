@@ -20,12 +20,9 @@
             <div>{{movie.language}}</div>
         </div>
         <div class="show-timings-container">
-            <div *ngFor="let show of movie.time" class="shows" (click)="bookTicket(theatre, movie, show)">
-                <div class="show-text">{{show}}</div>
+            <div *ngFor="let show of movie.time" class="shows" (click)="routeToBookTicket(movie.id, show.url)">
+                <div class="show-text">{{show.time}}</div>
             </div>
         </div>
     </div>
-</div>
-<div *ngIf="openModal">
-    <app-bookticket [ticketDetails]="ticketDetails" [bookedSeats]="bookedSeats" (closeBooking)="closeBooking($event)"></app-bookticket>
 </div>
