@@ -31,7 +31,7 @@ export class MoviesComponent implements OnInit {
     this.appService.getData.subscribe((response: any) => {
       if (response) {
         this.allDetails = response;
-        this.allDetails.movies.forEach((obj: any, i: number) => {
+        this.allDetails?.movies?.forEach((obj: any, i: number) => {
           obj.id = i + 1;
         })
         if (this.movieId) {

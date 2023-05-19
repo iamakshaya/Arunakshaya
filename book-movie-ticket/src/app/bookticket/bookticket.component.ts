@@ -30,9 +30,14 @@ export class BookticketComponent implements OnInit {
         this.theatreId = data['tid'];
         this.date = data['date'];
         this.time = data['time'];
+        const i = this.dates.findIndex((x: any) => x.url == this.date);
+        if (i != -1) {
+          this.selectDate(i);
+        }
       }
    });
    this.appService.allDetails.subscribe((x: any) => {
+    this.seats = [];
     if (this.movieId && x.movies) {
       const movieIndex = x.movies.findIndex((x: any)=>x.id == this.movieId);
       if(movieIndex != -1) {
@@ -63,7 +68,7 @@ export class BookticketComponent implements OnInit {
   }
   close(afterPost: boolean = false) {
     this.ticketDetails.booked_seats = '';
-    this.router.navigateByUrl('/movies');
+    window.history.back();
   }
   bookTicket() {
     if (!this.ticketDetails.booked_seats) {
@@ -83,5 +88,12 @@ export class BookticketComponent implements OnInit {
 
   getAllDetails() {
     this.appService.getAllDetails();
+  }
+  selectDate(i: number) {
+    this.dates.forEach((data: any) => {
+      data.selected = false;
+    })
+    this.dates[i].selected = true;
+    this.date = this.dates[i].url;
   }
 }

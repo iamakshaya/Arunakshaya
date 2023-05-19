@@ -35,17 +35,20 @@ export class TheatrelistComponent implements OnInit {
     this.appService.getData.subscribe((response: any) => {
       if (response) {
         this.allDetails = response;
-        this.allDetails.theatre.forEach((obj: any, i: number) => {
+        this.allDetails?.theatre?.forEach((obj: any, i: number) => {
           obj.id = i + 1;
+          console.log(obj.thumbnail_url);
         })
         //this.appService.allDetails.next(response);
         if (this.theatreId) {
           const theatreIndex = this.allDetails.theatre.findIndex((x: any)=>x.id == this.theatreId);
           this.allDetails.theatre[theatreIndex] = this.formMovieList(this.allDetails.theatre[theatreIndex], this.allDetails.movies);
           this.setCurrentTheatreDetails(this.allDetails.theatre[theatreIndex]);
+          
         }
       }
       console.log(this.allDetails);
+
     }, (err: any) => {
       console.log(err);
     })
