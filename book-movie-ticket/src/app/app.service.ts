@@ -11,6 +11,9 @@ export class AppService {
   user_mail_id: string = 'mailarunakshaya@gmail.com';
   public allDetails = new BehaviorSubject<any>({});
   public getData = this.allDetails.asObservable();
+  public allUsers: any = [];
+  public isAuthenticated = false;
+  public currentUser: any = {};
   days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   constructor(private http: HttpClient) { }
 
@@ -150,5 +153,11 @@ export class AppService {
       bookedSeats = seats.find((x: any) => x.time == ticketDetails.show_time)?.bookedSeats;
     }
     return bookedSeats;
+  }
+  updateBookedSeatsByUser(ticketDetails: any) {
+    const i = this.allUsers.findIndex((details: any) => details.username.toLowerCase() == this.currentUser.username.toLowerCase());
+    if (i != -1) {
+      this.allUsers[i].showDetails.push(ticketDetails);
+    }
   }
 }

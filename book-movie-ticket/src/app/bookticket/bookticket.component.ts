@@ -78,6 +78,8 @@ export class BookticketComponent implements OnInit {
       if (response && response.message) {
         this.responseMessage = response.message;
         this.alert = true;
+        this.appService.updateBookedSeatsByUser(this.ticketDetails);
+        console.log(this.appService.allUsers);
         this.getAllDetails();
       }
     }, (err: any) => {  

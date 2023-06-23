@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,6 +12,9 @@ import { TheatrewidgetComponent } from './theatrewidget/theatrewidget.component'
 import { ShowtimingComponent } from './showtiming/showtiming.component';
 import { BookticketComponent } from './bookticket/bookticket.component';
 import { TshowtimingComponent } from './tshowtiming/tshowtiming.component';
+import { CreateaccountComponent } from 'src/createaccount/createaccount.component';
+import { RouteGuard } from 'src/route.guard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,14 +25,17 @@ import { TshowtimingComponent } from './tshowtiming/tshowtiming.component';
     TheatrewidgetComponent,
     ShowtimingComponent,
     BookticketComponent,
-    TshowtimingComponent
+    TshowtimingComponent,
+    CreateaccountComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule
   ],
-  providers: [ AppService ],
+  providers: [ AppService, RouteGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

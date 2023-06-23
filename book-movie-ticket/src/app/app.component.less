@@ -30,6 +30,7 @@
 .nav-menu-container {
     display: flex;
     align-items: center;
+    flex-grow: 1;
 
     div {
         font-size: 13px;
@@ -52,4 +53,57 @@
     color: #ffc107;
     border-color: #ffc107;
     border-bottom: 3px solid;
+}
+
+.sign-in-container {
+    font-size: 13px;
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+    color: #bdbdbd;
+
+    div {
+        cursor: pointer;
+        padding-right: 10px;
+    }
+}
+
+.user-name {
+    color: #ffc10d;
+}
+
+.menu-icon {
+    width: 20px;
+    height: 20px;
+    background-image: url('../assets/menu.svg');
+    background-repeat: no-repeat;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+.side-nav-bar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #2c333d;
+    overflow-x: hidden;
+    transition: 0.5s;
+    opacity: 0.8;
+}
+.sidenav-container {
+    padding: 20px;
+}
+.sidenav-header {
+    color: white;
+    letter-spacing: 4px;
+    line-height: 20px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ffc107;
+    padding: 10px 0px;
+    font-size: 14px;
+    display: inline-block;
+    font-weight: inherit;
 }

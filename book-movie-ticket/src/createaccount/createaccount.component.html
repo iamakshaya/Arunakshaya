@@ -1,0 +1,39 @@
+<div class="container-centered">
+    <div *ngIf="isloginPage" class="container">
+        <div class="heading">Sign In</div>
+        <div class="form-container">
+            <div class="input-field">
+                <label>Username</label>
+                <input class="form-field" type="text" [(ngModel)]="userDetails.username" />
+            </div>
+            <div class="input-field">
+                <label>Password</label>
+                <input class="form-field" type="password" [(ngModel)]="userDetails.password" />
+            </div>
+        </div>
+        <div class="footer">
+            <button class="signin-button" (click)="SignIn()">Sign In</button>
+        </div>
+    </div>
+    <div *ngIf="!isloginPage" class="container">
+        <div class="heading">Sign Up</div>
+        <div class="form-container">
+            <div class="input-field">
+                <label>Username</label>
+                <input class="form-field" type="text" [(ngModel)]="userDetails.username" />
+            </div>
+            <div class="input-field">
+                <label>Password</label>
+                <input class="form-field" type="password" [(ngModel)]="userDetails.password" />
+            </div>
+            <div class="input-field">
+                <label>Confirm Password</label>
+                <input id="cpass" class="form-field" type="password" [(ngModel)]="userDetails.cpassword" />
+                <span (mouseover)="viewPassword()" (mouseleave)="hidePassword()">SHOW</span>
+            </div>
+        </div>
+        <div class="footer">
+            <button class="signin-button" (click)="SignUp()">Sign Up</button>
+        </div>
+    </div>
+</div>

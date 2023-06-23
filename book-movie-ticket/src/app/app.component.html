@@ -5,8 +5,22 @@
     <span>Ticket</span>
   </div>
   <div class="nav-menu-container">
-    <div><a routerLink="/movies" routerLinkActive="active-link">Movies</a></div>
-    <div><a routerLink="/theatres" routerLinkActive="active-link">Theatres</a></div>
+    <div *ngIf="appService.isAuthenticated"><a routerLink="/movies" routerLinkActive="active-link">Movies</a></div>
+    <div *ngIf="appService.isAuthenticated"><a routerLink="/theatres" routerLinkActive="active-link">Theatres</a></div>
+  </div>
+  <div class="sign-in-container">
+    <div *ngIf="!appService.isAuthenticated" (click)="routeTo('signIn')">Sign In</div>
+    <div *ngIf="!appService.isAuthenticated" (click)="routeTo('signUp')">Sign Up</div>
+    <div class="user-name" *ngIf="appService.isAuthenticated" (click)="routeTo('signIn')">{{appService.currentUser?.username}}</div>
+    <div *ngIf="appService.isAuthenticated" (click)="routeTo('signIn')">Sign Out</div>
+    <div *ngIf="appService.isAuthenticated" class="menu-icon" (click)="showBookingHistory()"></div>
   </div>
 </header>
+<div id="bookingHistory" class="side-nav-bar">
+  <div class="sidenav-container">
+    <span class="sidenav-header">
+      BOOKING HISTORY
+    </span>
+  </div>
+</div>
 <router-outlet></router-outlet>
